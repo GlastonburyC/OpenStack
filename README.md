@@ -1,5 +1,5 @@
 # OpenStack
-Setting up a bastion node instance with elasticluster and SLURM queue.
+Setting up a bastion node instance with elasticluster and SLURM queue. This is quite an involved process and something you cannot follow blindly. Please at least read how OpenStack works and what elasticluster/slurm does. Familarise yourself with public/private key generation and what a virtual machine is.
 
 The current setup is to access emedlab using a VPN connection:
 
