@@ -10,9 +10,9 @@ Once connected to the VPN through the Cisco AnyConnect client we are able to acc
 Our group is rna-seq-map-ref
 ``` http://10.0.42.197/ ```
 
-and the bastion instance:
+and the bastion instance (using your own ssh private key):
 
-```ssh username@10.2.223.19```
+```ssh -i id_rsa username@10.2.223.19```
 
 The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be fimilar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
 This bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
@@ -30,5 +30,11 @@ Elasticluster allows one to start several instances at the same time, all with s
 
 Information on elasticluster can be found here:
 
-```http://elasticluster.readthedocs.io/en/latest/```
+``` http://elasticluster.readthedocs.io/en/latest/ ```
+
+A have included a basic elasticluster config file which can be modified and which needs modifying depending on your requirements (RAM per instance, CPU per instance, how many instances, run time etc) This can be found in the following file and should be written as a file to home/username/.elasticluster/config:
+
+config
+
+
 
