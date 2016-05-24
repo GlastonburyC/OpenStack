@@ -23,7 +23,7 @@ To interact with the OpenStack API it is neccessary to touch a configuration fil
 
 This configuration file needs to be modified with your username and password
 
-## Elasticluster & SLURM
+## Elasticluster, MUNGE & SLURM
 
 install elasticluster via pip and any dependencies it has. This is only neccessary if you're using a bastion instance that doesn't have this already configured (for example if you're using my bastion instance).
 
@@ -38,6 +38,14 @@ A have included a basic elasticluster config file which can be modified and whic
 ``` config ```
 
 The configuration file should be modified with your username and password, and ssh-key name. The ssh-key name needs to be added via the OpenStack dashboard via the 'Access and Security panel > key pairs' tab. Here you can copy your ssh public key.
+
+MUNGE needs to be installed before SLURM, to act as a daemon on each instance so that you can readily ssh into each VM and access to each VM is automatically coordinated using MUNGE. Both MUNGE and SLURM can be installed using the following guide:
+
+``` http://www.slothparadise.com/how-to-install-slurm-on-centos-7-cluster/ ```
+
+I have already generated a SLURM configuration file so you don't have to:
+
+``` slurm.conf ```
 
 
 
