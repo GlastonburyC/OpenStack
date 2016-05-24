@@ -20,6 +20,7 @@ This bastion node is also important as it is the instance that has access to the
 To interact with the OpenStack API it is neccessary to touch a configuration file - supplied above:
 
 ``` rna-seq-map-ref-openrc.sh ```
+
 This configuration file needs to be modified with your username and password
 
 ## Elasticluster & SLURM
