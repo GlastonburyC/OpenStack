@@ -69,5 +69,5 @@ Once you have everything installed, it should be possible to start a virtual clu
 
 ``` elasticluster start slurm -v ```
 
-
+By using the slothparadise guide, it's important you follow their suggestions and copy your MUNGE key onto each node - This can be done using an autoconfiguration script.
 
