@@ -34,7 +34,11 @@ Information on elasticluster can be found here:
 
 A have included a basic elasticluster config file which can be modified and which needs modifying depending on your requirements (RAM per instance, CPU per instance, how many instances, run time etc) This can be found in the following file and should be written as a file to home/username/.elasticluster/config:
 
-config
+``` config ```
+
+The configuration file should be modified with your username and password, and ssh-key name. The ssh-key name needs to be added via the OpenStack dashboard via the 'Access and Security panel > key pairs' tab. Here you can copy your ssh public key.
+
+
 
 
 
