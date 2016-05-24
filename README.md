@@ -17,6 +17,11 @@ and the bastion instance:
 The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be fimilar with. CentOS uses yum rather than ```‘apt-get’```, and programs such as nano, wget etc are not installed by default. Install them using: ```‘sudo yum install nano’```.
 This bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
 
+To interact with the OpenStack API it is neccessary to touch a configuration file - supplied above:
+
+```' rna-seq-map-ref-openrc.sh '```
+This configuration file needs to be modified with your username and password
+
 ## Elasticluster & SLURM
 
 install elasticluster via pip and any dependencies it has. This is only neccessary if you're using a bastion instance that doesn't have this already configured (for example if you're using my bastion instance).
