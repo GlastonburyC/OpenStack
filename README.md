@@ -26,8 +26,11 @@ sudo su
 parted /dev/vdb mklabel gpt
 parted /dev/vdb mkpart primary xfs 1 -1
 mkfs.xfs -L ee /dev/vdb1
+mount /dev/vdb1/ /mnt
+cd ~/
+ln -s /mnt/shared_data/ scratch
 ```
-A mounted 25Tb volume is now available to write to on the bastion node. This can hold all the data we want to work on / share.
+A mounted 25Tb volume is now available to write to on the bastion node. This can hold all the data we want to work on / share. I have called it scratch.
 
 This bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
 
