@@ -16,7 +16,21 @@ and the bastion instance (using your own ssh private key):
 ```ssh -i id_rsa username@10.2.223.19```
 
 The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be fimilar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
+
+I added a 25Tb volume to the bastion instance so that it's possible to eventually have an network file system (NFS) that all slave instances can write to.
+
+This required manually creating a filesystem, and due to it being 25Tb (v.large) GPT was used:
+
+```
+sudo su
+parted /dev/vdb mklabel gpt
+parted /dev/vdb mkpart primary xfs 1 -1
+mkfs.xfs -L ee /dev/vdb1
+```
+A mounted 25Tb volume is now available to write to on the bastion node. This can hold all the data we want to work on / share.
+
 This bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
+
 
 To interact with the OpenStack API it is neccessary to touch a configuration file - supplied above:
 
