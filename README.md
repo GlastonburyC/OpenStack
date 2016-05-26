@@ -87,5 +87,7 @@ Once you have everything installed, it should be possible to start a virtual clu
 
 ``` elasticluster start slurm -v ```
 
-By using the slothparadise guide, it's important you follow their suggestions and copy your MUNGE key onto each node - This can be done using an autoconfiguration script.
+At this point I can launch a cluster with as many instances as I like, and I can SSH into any of them easily.
+
+However, I need to now setup an ansible play-book which will allow me to create an Network Filesystem so that all instances write to my 25Tb volume that is attached to my bastion instance. Additionally, I need to setup SLURM so I can submit jobs using .sh scripts like a traditional HPC. .....More to follow.....
 
