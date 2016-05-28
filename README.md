@@ -87,9 +87,14 @@ Once you have everything installed, it should be possible to start a virtual clu
 
 ``` elasticluster start slurm -v ```
 
-At this point I can launch a cluster with as many instances as I like, and I can SSH into any of them easily.
+At this point you can launch a cluster with as many instances as you like, and can SSH into any of them easily.
 
 Make sure you have ansible version > 2.x. Else it will lead to an error as it will try and use a class called 'Package' and fail (because it doesn't exist).
 
+##SLURM commands and batch jobs
+
+Use the following header for your batch job submissions:
+
+```#!/bin/bash # #SBATCH -p general # partition (queue) #SBATCH -N 1 # number of nodes #SBATCH -n 1 # number of cores #SBATCH --mem 100 # memory pool for all cores #SBATCH -t 0-2:00 # time (D-HH:MM) #SBATCH -o slurm.%N.%j.out # STDOUT #SBATCH -e slurm.%N.%j.err # STDERR #SBATCH --mail-type=END,FAIL # notifications for job done & fail #SBATCH --mail-user=myemail@harvard.edu # send-to address```
 
 
