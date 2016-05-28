@@ -95,6 +95,29 @@ Make sure you have ansible version > 2.x. Else it will lead to an error as it wi
 
 Use the following header for your batch job submissions:
 
-```#!/bin/bash # #SBATCH -p general # partition (queue) #SBATCH -N 1 # number of nodes #SBATCH -n 1 # number of cores #SBATCH --mem 100 # memory pool for all cores #SBATCH -t 0-2:00 # time (D-HH:MM) #SBATCH -o slurm.%N.%j.out # STDOUT #SBATCH -e slurm.%N.%j.err # STDERR #SBATCH --mail-type=END,FAIL # notifications for job done & fail #SBATCH --mail-user=myemail@harvard.edu # send-to address```
+```
+#!/bin/bash 
+# 
+#SBATCH -p general 
+# partition (queue) 
+#SBATCH -N 1 
+# number of nodes 
+#SBATCH -n 1 
+# number of cores 
+#SBATCH --mem 100 
+# memory pool for all cores 
+#SBATCH -t 0-2:00 
+# time (D-HH:MM) 
+#SBATCH -o slurm.%N.%j.out 
+# STDOUT #SBATCH -e slurm.%N.%j.err 
+# STDERR #SBATCH --mail-type=END,FAIL # notifications for job done & fail 
+#SBATCH --mail-user=myemail@test.edu # send-to address 
+```
+Useful commands to use:
+
+``` sbatch myscript.sh ``` 
+``` squeue -u <username> ```
+``` scancel <jobid> ```
+``` lsload |grep 'Hostname|<partition>' ``` check cluster utilisation.
 
 
