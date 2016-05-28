@@ -116,8 +116,11 @@ Use the following header for your batch job submissions:
 Useful commands to use:
 
 ``` sbatch myscript.sh ``` 
+
 ``` squeue -u <username> ```
+
 ``` scancel <jobid> ```
+
 ``` lsload |grep 'Hostname|<partition>' ``` check cluster utilisation.
 
 
