@@ -3,7 +3,7 @@ Setting up a bastion node instance with elasticluster and SLURM queue. This is q
 
 The current setup is to access emedlab using a VPN connection:
 
-```http://vpn.emedlab.ac.uk/ ```
+```https://vpn.emedlab.ac.uk/ ```
 
 Once connected to the VPN through the Cisco AnyConnect client we are able to access both the openStack emedlab web interface/dashboard:
 
