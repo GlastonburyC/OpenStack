@@ -113,7 +113,7 @@ Use the following header for your batch job submissions:
 #SBATCH -o slurm.%N.%j.out 
 # STDOUT #SBATCH -e slurm.%N.%j.err 
 # STDERR #SBATCH --mail-type=END,FAIL # notifications for job done & fail 
-#SBATCH --mail-user=myemail@test.edu # send-to address 
+#SBATCH --mail-user=myemail@test.kcl.ac.uk # send-to address 
 ```
 Useful commands to use:
 
