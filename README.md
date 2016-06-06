@@ -1,29 +1,31 @@
 # OpenStack
 Setting up a bastion node instance with elasticluster and SLURM queue. This is quite an involved process and something you cannot follow blindly. Please at least read how OpenStack works and what elasticluster/slurm does. Familarise yourself with public/private key generation and what a virtual machine is.
 
+If you are simply using the elasticluster I have set up, and do not have a project of your own - *DO NOT* run any of the commands below, apart from logging in and submitting jobs. This guide is to configure your own project from scratch.
+
 The current setup is to access emedlab using a VPN connection:
 
 ```https://vpn.emedlab.ac.uk/ ```
 
 Once connected to the VPN through the Cisco AnyConnect client we are able to access both the openStack emedlab web interface/dashboard:
 
-Our group is rna-seq-map-ref
+Our group is rna-seq-map-ref - Browse to the OpenStack Dashboard using the following link:
 
 ``` http://10.0.42.197/ ```
 
-and the bastion instance (using your own ssh private key):
+The bastion instance (using your own ssh private key):
 
 ```ssh -i id_rsa username@10.2.223.19```
 
-The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be fimilar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
+The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be familar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
 
-The bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
+The bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them and to check what is running, which can also be done via the web dashboard. However, to run things such as elasticluster with a SLURM queue, command line level access is required.
 
 To interact with the OpenStack API it is neccessary to touch a configuration file - supplied above:
 
 ``` rna-seq-map-ref-openrc.sh ```
 
-This configuration file needs to be modified with your username and password.
+This configuration file needs to be modified with your username and password. I have added this to my bashrc profile so it runs automatically when I connnect.
 
 Once this is done, you can access useful information - For example, what flavour nodes are available/pre configured to use:
 
