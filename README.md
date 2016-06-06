@@ -17,23 +17,7 @@ and the bastion instance (using your own ssh private key):
 
 The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be fimilar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
 
-I added a 25Tb volume to the bastion instance so that it's possible to eventually have an network file system (NFS) that all slave instances can write to.
-
-This required manually creating a filesystem, and due to it being 25Tb (v.large) GPT was used:
-
-```
-sudo su
-parted /dev/vdb mklabel gpt
-parted /dev/vdb mkpart primary xfs 1 -1
-mkfs.xfs -L ee /dev/vdb1
-mount /dev/vdb1/ /mnt
-cd ~/
-ln -s /mnt/shared_data/ scratch
-```
-A mounted 25Tb volume is now available to write to on the bastion node. This can hold all the data we want to work on / share. I have called it scratch.
-
-This bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
-
+The bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them, check what is running etc which can also be done via the web dashboard. However, to run things such as elasticluster and SLURM, command line level access is required.
 
 To interact with the OpenStack API it is neccessary to touch a configuration file - supplied above:
 
@@ -88,6 +72,24 @@ Once you have everything installed, it should be possible to start a virtual clu
 ``` elasticluster start slurm -v ```
 
 At this point you can launch a cluster with as many instances as you like, and can SSH into any of them easily.
+
+I have setup a cluster of 18 slaves and 1 headnode. From the headnode you can access the queue. You can either use SLURM or the open source version of SGE (qstat/qrsh/qsub etc).
+
+I added a 29Tb volume to the headnode instance of an example elasticluster setup so that it's possible to have an network file system (NFS) that all slave instances can write to.
+
+This required manually creating a filesystem, and due to it being 25Tb (v.large) GPT was used:
+
+```
+sudo su
+parted /dev/vdb mklabel gpt
+parted /dev/vdb mkpart primary xfs 1 -1
+mkfs.xfs -L ee /dev/vdb1
+mount /dev/vdb1/ /mnt
+cd ~/
+ln -s /mnt/shared_data/ scratch
+```
+A mounted 29Tb volume is now available to write to. This can hold all the data we want to work on / share. I have called it scratch.
+
 
 Make sure you have ansible version > 2.x. Else it will lead to an error as it will try and use a class called 'Package' and fail (because it doesn't exist).
 
