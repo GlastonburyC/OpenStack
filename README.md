@@ -73,6 +73,8 @@ Once you have everything installed, it should be possible to start a virtual clu
 
 ``` elasticluster start slurm -v ```
 
+Make sure you have ansible version > 2.x. Else it will lead to an error as it will try and use a class called 'Package' and fail (because it doesn't exist).
+
 At this point you can launch a cluster with as many instances as you like, and can SSH into any of them easily.
 
 I have setup a cluster of 18 slaves and 1 headnode. From the headnode you can access the queue. You can either use SLURM or the open source version of SGE (qstat/qrsh/qsub etc).
@@ -92,8 +94,23 @@ ln -s /mnt/shared_data/ scratch
 ```
 A mounted 29Tb volume is now available to write to. This can hold all the data we want to work on / share. I have called it scratch.
 
+This should be mounted on the headnode now. To turn this into a network file system (NFS) for all other compute nodes to be able to access and write to it, add to /etc/exports
 
-Make sure you have ansible version > 2.x. Else it will lead to an error as it will try and use a class called 'Package' and fail (because it doesn't exist).
+```/mnt/shared_data compute001(rw,no_root_squash,async,no_subtree_check,crossmnt) compute002(rw,no_root_squash,async,no_subtree_check,crossmnt) compute003(rw,no_root_squash,async,no_subtree_check,crossmnt) compute004(rw,no_root_squash,async,no_subtree_check,crossmnt) compute005(rw,no_root_squash,async,no_subtree_check,crossmnt) compute006(rw,no_root_squash,async,no_subtree_check,crossmnt) compute007(rw,no_root_squash,async,no_subtree_check,crossmnt) compute008(rw,no_root_squash,async,no_subtree_check,crossmnt) compute009(rw,no_root_squash,async,no_subtree_check,crossmnt) compute010(rw,no_root_squash,async,no_subtree_check,crossmnt) compute011(rw,no_root_squash,async,no_subtree_check,crossmnt) compute012(rw,no_root_squash,async,no_subtree_check,crossmnt) compute013(rw,no_root_squash,async,no_subtree_check,crossmnt) compute014(rw,no_root_squash,async,no_subtree_check,crossmnt) compute015(rw,no_root_squash,async,no_subtree_check,crossmnt) compute016(rw,no_root_squash,async,no_subtree_check,crossmnt) compute017(rw,no_root_squash,async,no_subtree_check,crossmnt) compute018(rw,no_root_squash,async,no_subtree_check,crossmnt)```
+
+Invoke ansible to mount the drive on all compute nodes:
+
+```ansible -i ~/.elasticluster/storage/ansible-inventory.slurm slurm_clients -m mount -s -a “name=<client mount point> src=frontend001:<server export> fstype=nfs state=mounted"```
+
+We now have a drive that is accessible to all nodes '/mnt/shared_data/'.
+
+Software can be installed to all compute nodes by doing the following (example, Rstudio and a R module):
+
+```ansible -i ~/.elasticluster/storage/ansible-inventory.slurm slurm_clients -s -m yum_repository -a "repo='http://cran.rstudio.com/bin/linux/ubuntu trusty/' state=present"```
+
+```
+ansible -i ~/.elasticluster/storage/ansible-inventory.uvslurm61 slurm_master -s -m apt -a "name=r-recommended state=present force=yes”
+```
 
 ##SLURM commands and batch jobs
 
@@ -126,5 +143,3 @@ Useful commands to use:
 ``` scancel <jobid> ```
 
 ``` lsload |grep 'Hostname|<partition>' ``` check cluster utilisation.
-
-
