@@ -104,15 +104,17 @@ Invoke ansible to mount the drive on all compute nodes:
 
 We now have a drive that is accessible to all nodes '/mnt/shared_data/'.
 
-Software can be installed to all compute nodes by doing the following (example, Rstudio and a R module):
+Software can be installed to all compute nodes by doing the following (example R)
 
-```ansible -i ~/.elasticluster/storage/ansible-inventory.slurm slurm_clients -s -m yum_repository -a "repo='http://cran.rstudio.com/bin/linux/ubuntu trusty/' state=present"```
+``` ansible -i ~/.elasticluster/storage/ansible-inventory.slurm $slurm_hosts -s -m yum -a "name='R' state=present"```
 
-```
-ansible -i ~/.elasticluster/storage/ansible-inventory.uvslurm61 slurm_master -s -m apt -a "name=r-recommended state=present force=yes”
-```
+Where ```$slurm_hosts``` is a variable consisting of all the node names (frontend001,compute001,compute002...computeN)
 
-You have to do this for all packages in R, and any programs you want to invoke from a batch job... It's a pain.
+I have created an ansible playbook that will install R-packages automatically on all hosts by running:
+
+```ansible-playbook r_packages.yml -i .elasticluster/storage/ansible-inventory.slurm ```
+
+You should now have R, java, python and basic/neccessary R packages such as lme4, Matrix, and data.table.
 
 ##SLURM commands and batch jobs
 
