@@ -1,5 +1,4 @@
 ---
-# R packages for Matrix Population Modelling workflow
 - hosts: all
   sudo: true
   tasks:
