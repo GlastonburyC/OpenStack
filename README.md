@@ -112,6 +112,8 @@ Software can be installed to all compute nodes by doing the following (example, 
 ansible -i ~/.elasticluster/storage/ansible-inventory.uvslurm61 slurm_master -s -m apt -a "name=r-recommended state=present force=yes”
 ```
 
+You have to do this for all packages in R, and any programs you want to invoke from a batch job... It's a pain.
+
 ##SLURM commands and batch jobs
 
 Use the following header for your batch job submissions:
