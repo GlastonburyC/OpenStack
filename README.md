@@ -81,7 +81,7 @@ I have setup a cluster of 18 slaves and 1 headnode. From the headnode you can ac
 
 I added a 29Tb volume to the headnode instance of an example elasticluster setup so that it's possible to have an network file system (NFS) that all slave instances can write to.
 
-This required manually creating a filesystem, and due to it being 25Tb (v.large) GPT was used:
+This required manually creating a filesystem, and due to it being 29Tb (v.large) GPT was used:
 
 ```
 sudo su
