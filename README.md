@@ -116,6 +116,10 @@ I have created an ansible playbook that will install R-packages automatically on
 
 You should now have R, java, python and basic/neccessary R packages such as lme4, Matrix, and data.table.
 
+Some tools, such as adapter trimming software use perl - amongst many other bioinformatic tools. To install perl, cpan and perl modules, I have added an ansible playbook to install across the cluster:
+
+```ansible-playbook perl.yml -i .elasticluster/storage/ansible-inventory.slurm ```
+
 ##SLURM commands and batch jobs
 
 Use the following header for your batch job submissions:
