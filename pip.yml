@@ -11,3 +11,5 @@
     - python-pip
     - python-setuptools
     - python-dev
+    - numpy
+    - scipy
