@@ -149,5 +149,3 @@ Useful commands to use:
 ``` squeue -u <username> ```
 
 ``` scancel <jobid> ```
-
-``` lsload |grep 'Hostname|<partition>' ``` check cluster utilisation.
