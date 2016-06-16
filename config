@@ -51,5 +51,5 @@ security_group=icmp-ssh-rna-seq-map-ref
 image_id=cf00f848-0165-44ce-83a2-6703a0f93b71
 flavor=ephemeral-test
 frontend_nodes=1
-compute_nodes=18
+compute_nodes=25
 ssh_to=frontend
