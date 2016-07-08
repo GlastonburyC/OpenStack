@@ -100,7 +100,7 @@ This should be mounted on the headnode now. To turn this into a network file sys
 
 Invoke ansible to mount the drive on all compute nodes:
 
-```ansible -i ~/.elasticluster/storage/ansible-inventory.slurm slurm_clients -m mount -s -a “name=<client mount point> src=frontend001:<server export> fstype=nfs state=mounted"```
+```ansible -i ~/.elasticluster/storage/ansible-inventory.slurm+pvfs2 slurm_hosts -m mount -s -a “name=media/ src=frontend001:/media fstype=nfs state=mounted""```
 
 We now have a drive that is accessible to all nodes '/mnt/shared_data/'.
 
