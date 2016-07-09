@@ -17,7 +17,7 @@ The bastion instance (using your own ssh private key):
 
 ```ssh -i id_rsa username@10.2.223.19```
 
-The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be familar with. CentOS uses yum rather than ```apt-get```, and programs such as nano, wget etc are not installed by default. Install them using: ```sudo yum install nano```.
+The bastion instance is running CentOS and has root level access. If you have your own bastion instance running CentOS, it will be necessary to install everything you might be familar with. 
 
 The bastion node is also important as it is the instance that has access to the OpenStack public API. This is used to instantiate VM images, configure them and to check what is running, which can also be done via the web dashboard. However, to run things such as elasticluster with a SLURM queue, command line level access is required.
 
