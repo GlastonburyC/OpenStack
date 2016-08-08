@@ -1,6 +1,6 @@
 # OpenStack Virtual cluster with Ansible.
 
-The first step is to setup PGP (to recieve encrypted emails) and an ssh public key for gaining access to the OpenStack dashboard and emedlab VPN.
+The first step is to setup PGP (to recieve encrypted emails) and generated a public key for gaining access to the OpenStack dashboard and emedlab VPN.
 
 I used the following [guide](http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/)
 
