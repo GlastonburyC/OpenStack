@@ -1,4 +1,13 @@
 # OpenStack Virtual cluster with Ansible.
+
+The first step is to setup PGP (to recieve encrypted emails) and an ssh public key for gaining access to the OpenStack dashboard and emedlab VPN.
+
+I used the following [guide](http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/)
+
+Generate a public key for SSH access:
+
+```ssh-keygen -t rsa -b 4096 -C “your_email@kcl.ac.uk”```
+
 Setting up a bastion node instance with elasticluster and SLURM queue. This is quite an involved process and something you cannot follow blindly. Please at least read how OpenStack works and what elasticluster/slurm does. Familarise yourself with public/private key generation and what a virtual machine is.
 
 This guide is to configure your own openstack project from scratch. If you are simply using the elasticluster I have set up, and do not have a project of your own - *DO NOT* run any of the commands below, apart from logging in and submitting jobs. Write down the VPN and bastion node instance IP and perhaps refer to the SLURM commands to submit jobs. 
